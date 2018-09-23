@@ -20,10 +20,10 @@ public class Task {
 	String name;
 	private Workload workload;
 //	private List<Staff> roster;
-	Map<Staff, Availability> roster;
+	Map<Staff, Timeslot> roster;
 	List<String> requiredQualifications;
 	Location location;
-	Availability schedule;
+	Timeslot schedule;
 
 	// clinic details
 	// 
@@ -46,17 +46,17 @@ public class Task {
 		this.workload = workload;
 	}
 
-	public Map<Staff, Availability> getRoster() {
+	public Map<Staff, Timeslot> getRoster() {
 		return roster;
 	}
 
-	public void setRoster(Map<Staff, Availability> roster) {
+	public void setRoster(Map<Staff, Timeslot> roster) {
 		this.roster = roster;
 	}
 	
-	public void addStaff( Staff staff, Availability availability ) {
+	public void addStaff( Staff staff, Timeslot availability ) {
 		if( roster == null ) {
-			roster = new HashMap<Staff, Availability>();
+			roster = new HashMap<Staff, Timeslot>();
 		}
 		roster.put(staff, availability);
 	}
@@ -77,11 +77,11 @@ public class Task {
 		this.location = location;
 	}
 
-	public Availability getSchedule() {
+	public Timeslot getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(Availability schedule) {
+	public void setSchedule(Timeslot schedule) {
 		this.schedule = schedule;
 	}
 
@@ -104,7 +104,7 @@ public class Task {
 		location.setName("Purple Orchid");
 		hrtC.location = location;
 		
-		hrtC.schedule = new Availability(LocalDateTime.of(2018, Month.SEPTEMBER, 4, 13, 0), LocalDateTime.of(2018, Month.SEPTEMBER, 4, 17, 0));;
+		hrtC.schedule = new Timeslot(LocalDateTime.of(2018, Month.SEPTEMBER, 4, 13, 0), LocalDateTime.of(2018, Month.SEPTEMBER, 4, 17, 0));;
 		
 		System.out.println(hrtC);
 	}

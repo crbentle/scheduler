@@ -17,12 +17,13 @@ public class Staff {
 	List<String> qualifications = new ArrayList<String>();
 	/* Ordered list of location priorities*/
 	List<String> locationPriority;
+	//TODO: assignments (assigned tasks/hours)
 
 	/*
 	 * Map of Date/Availability //Ordered list of availability from earliest to
 	 * latest
 	 */
-	Map<LocalDate, Availability> availability = new TreeMap<LocalDate, Availability>();
+	Map<LocalDate, Timeslot> availability = new TreeMap<LocalDate, Timeslot>();
 
 	int hoursPerPeriod;
 	int hoursWorked;
@@ -40,8 +41,8 @@ public class Staff {
 		debbie.setQualifications(new ArrayList<String>(Arrays.asList("RN", "NST")));
 		debbie.setLocationPriority(new ArrayList<String>(Arrays.asList("Other", "NOB")));
 
-		debbie.availability.put(LocalDate.of(2018, Month.SEPTEMBER, 4), new Availability(LocalDateTime.of(2018, Month.SEPTEMBER, 4, 7, 30), LocalDateTime.of(2018, Month.SEPTEMBER, 4, 17, 0)));
-		debbie.availability.put(LocalDate.of(2018, Month.SEPTEMBER, 5), new Availability(LocalDateTime.of(2018, Month.SEPTEMBER, 5, 9, 00), LocalDateTime.of(2018, Month.SEPTEMBER, 5, 15, 0)));
+		debbie.availability.put(LocalDate.of(2018, Month.SEPTEMBER, 4), new Timeslot(LocalDateTime.of(2018, Month.SEPTEMBER, 4, 7, 30), LocalDateTime.of(2018, Month.SEPTEMBER, 4, 17, 0)));
+		debbie.availability.put(LocalDate.of(2018, Month.SEPTEMBER, 5), new Timeslot(LocalDateTime.of(2018, Month.SEPTEMBER, 5, 9, 00), LocalDateTime.of(2018, Month.SEPTEMBER, 5, 15, 0)));
 		
 		debbie.setHoursPerPeriod(40);
 		debbie.setHoursWorked(24);
@@ -71,6 +72,12 @@ public class Staff {
 	public void setQualifications(List<String> qualifications) {
 		this.qualifications = qualifications;
 	}
+	
+	public void addQualification(String qualification) {
+		if( qualification != null && qualification.trim().length() > 0 ) {
+			qualifications.add( qualification.trim() );
+		}
+	}
 
 	public List<String> getLocationPriority() {
 		return locationPriority;
@@ -80,12 +87,19 @@ public class Staff {
 		this.locationPriority = locationPriority;
 	}
 
-	public Map<LocalDate, Availability> getAvailability() {
+	public Map<LocalDate, Timeslot> getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(Map<LocalDate, Availability> availability) {
+	public void setAvailability(Map<LocalDate, Timeslot> availability) {
 		this.availability = availability;
+	}
+	
+	public void addAvailability( Timeslot timeframe ) {
+		if( timeframe != null && timeframe.getStartTime() != null ) {
+			LocalDate date = timeframe.getStartTime().toLocalDate();
+			availability.put( date, timeframe );
+		}
 	}
 
 	public int getHoursPerPeriod() {

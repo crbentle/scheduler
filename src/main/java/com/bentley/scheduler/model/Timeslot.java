@@ -2,13 +2,13 @@ package com.bentley.scheduler.model;
 
 import java.time.LocalDateTime;
 
-public class Availability {
+public class Timeslot {
 
 	// LocalDateTime.of(2015, Month.FEBRUARY, 20, 06, 30);
 	LocalDateTime startTime;
 	LocalDateTime endTime;
 	
-	public Availability( LocalDateTime startTime, LocalDateTime endTime ) {
+	public Timeslot( LocalDateTime startTime, LocalDateTime endTime ) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
